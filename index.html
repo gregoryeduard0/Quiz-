@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perguntas e Respostas</title>
+</head>
+
+<body>
+
+    <h2>Rio Grande do Sul: Terra de História, Cultura e Sabores</h2>
+
+
+    
+  
+        <p>O Rio Grande do Sul, estado situado na região sul do Brasil, é marcado por sua rica história, cultura e
+            paisagens deslumbrantes. Cortado pelo majestoso Rio Uruguai, o estado abriga em suas terras a vibrante
+            capital, Porto Alegre. Conhecido por seu churrasco gaúcho, uma iguaria apreciada nacionalmente, o Rio Grande
+            do Sul encanta também pela sua diversidade culinária.
+            <br>
+            <br>
+
+            Porto Alegre, a maior cidade do estado, pulsa com energia e diversidade, refletindo a essência gaúcha em
+            cada esquina. Mas não é apenas a capital que se destaca; outras cidades como Caxias do Sul, Pelotas e Canoas
+            contribuem para a vitalidade e crescimento econômico da região.
+            <br>
+            <br>
+
+            Porém, a história do Rio Grande do Sul vai além de suas cidades e sabores. Ela é entrelaçada com eventos
+            marcantes, como a Revolução Farroupilha, liderada pelo emblemático Bento Gonçalves da Silva, um período que
+            moldou a identidade e o orgulho dos gaúchos.
+            <br>
+            <br>
+
+            Assim, o Rio Grande do Sul se revela não apenas como um estado, mas como um símbolo de tradição, resiliência
+            e beleza natural, onde a história, a cultura e a gastronomia se unem para criar uma experiência única e
+            inesquecível.
+        </p>
+    
+
+
+    <div class="quiz-container">
+        <h1>Quiz de Perguntas e Respostas</h1>
+        <div id="pergunta"></div>
+        <div id="opcoes"></div>
+        <div id="resultado"></div>
+        <button id="reiniciar" style="display: none;" onclick="reiniciarQuiz()">Reiniciar Quiz</button>
+    </div>
+
+    <script>
+        const perguntas = [
+            {
+                pergunta: "Qual é o principal rio que atravessa o estado do Rio Grande do Sul?",
+                opcoes: ["Rio Guaíba", "Rio Paraná", "Rio Uruguai", "Rio Jacuí"],
+                resposta: "Rio Uruguai"
+            },
+            {
+                pergunta: "Qual é a capital do Rio Grande do Sul?",
+                opcoes: [" Porto Alegre", "Caxias do Sul", "Pelotas", "Santa Maria",],
+                resposta: " Porto Alegre"
+            },
+            {
+                pergunta: "Qual é o prato típico mais conhecido do Rio Grande do Sul?",
+                opcoes: ["Feijoada", "Moqueca", "Churrasco gaúcho", "Acarajé"],
+                resposta: "Churrasco gaúcho"
+            },
+            {
+                pergunta: "Qual é a maior cidade do Rio Grande do Sul em termos de população?",
+                opcoes: [" Caxias do Sul", "Porto Alegre", " Pelotas", "Canoas"],
+                resposta: "Porto Alegre"
+            },
+
+            {
+                pergunta: "Quem é considerado o líder da Revolução Farroupilha, um dos eventos mais importantes da história do Rio Grande do Sul?",
+                opcoes: ["Bento Gonçalves da Silva", "Getúlio Vargas", "Júlio de Castilhos", "Leonel Brizola"],
+                resposta: "Bento Gonçalves da Silva"
+            },
+
+        ];
+
+        const perguntaElemento = document.getElementById("pergunta");
+        const opcoesElemento = document.getElementById("opcoes");
+        const resultadoElemento = document.getElementById("resultado");
+
+        let indicePerguntaAtual = 0;
+
+        function carregarPergunta() {
+            const perguntaAtual = perguntas[indicePerguntaAtual];
+            perguntaElemento.textContent = perguntaAtual.pergunta;
+
+            opcoesElemento.innerHTML = "";
+            perguntaAtual.opcoes.forEach(opcao => {
+                const botao = document.createElement("button");
+                botao.textContent = opcao;
+                botao.addEventListener("click", () => verificarResposta(opcao));
+                opcoesElemento.appendChild(botao);
+            });
+        }
+
+        
+
+        function verificarResposta(respostaSelecionada) {
+            const perguntaAtual = perguntas[indicePerguntaAtual];
+            if (respostaSelecionada === perguntaAtual.resposta) {
+                resultadoElemento.textContent = "resposta correta!";
+                resultadoElemento.className = "correto";
+            } else {
+                resultadoElemento.textContent = "reposta incorreta. A resposta correta é: " + perguntaAtual.resposta;
+                resultadoElemento.className = "incorreto";
+            }
+
+            // avanca para próxima pergunta ou finaliza o quiz
+            indicePerguntaAtual++;
+            if (indicePerguntaAtual < perguntas.length) {
+                setTimeout(carregarPergunta, 1000); // carrega próxima pergunta após 1 segundos 
+            } else {
+                resultadoElemento.textContent = "Quiz concluido!";
+                resultadoElemento.className = "";
+            }
+        }
+
+        // carrega a primeira pergunta quando a página carrega 
+        carregarPergunta();
+
+    </script>
+
+    <div class="imagem">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHRxmYv_ZAB1u0ktXN8UKlUwBE8kq1GxWbjYz7Q56OMw&s"
+            alt="">
+    </div>
+
+</body>
+
+</html>
